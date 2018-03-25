@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.3">
-<title>My first app: subtitle here</title>
+<title>Running Enonic XP on the Google Cloud Platform</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -509,15 +509,18 @@ table.CodeRay td.code>pre{padding:0}
 .CodeRay .head .head{color:#f4f}
 </style>
 </head>
-<body class="book toc2 toc-right">
+<body class="article toc2 toc-right">
 <div id="header">
-<h1>My first app: subtitle here</h1>
+<h1>Running Enonic XP on the Google Cloud Platform</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#setting_up_your_project">Setting up your project</a></li>
-<li><a href="#building_and_deploying">Building and Deploying</a></li>
-<li><a href="#adding_a_root_controller">Adding a root controller</a></li>
+<li><a href="#step_1_deploy_launcher_image">Step 1 - Deploy Launcher image</a></li>
+<li><a href="#step_2_post_installation_steps">Step 2 - Post installation steps</a></li>
+<li><a href="#step_3_configuration_management">Step 3 - Configuration Management</a></li>
+<li><a href="#step_4_https_and_virtual_hosts">Step 4 - HTTPS and virtual hosts</a></li>
+<li><a href="#step_5_backup">Step 5 - Backup</a></li>
+<li><a href="#step_6_upgrading_to_new_xp_versions">Step 6 - Upgrading to new XP versions</a></li>
 </ul>
 </div>
 </div>
@@ -525,25 +528,19 @@ table.CodeRay td.code>pre{padding:0}
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>A step-by-step tutorial for building your first web application on the Enonic platform</strong></p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/ready-set-code.svg" alt="Ready...Set...Code!" width="100%">
-</div>
+<p><strong>This guide takes you through the basic steps of running Enonic XP on GCP</strong></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
-<div class="admonitionblock caution">
+<div class="admonitionblock warning">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
+<i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>In order to complete this tutorial, the Enonic development environment must be installed on your computer:
-<a href="https://developer.enonic.com/enonic-101/install-developer-environment" class="bare">https://developer.enonic.com/enonic-101/install-developer-environment</a></p>
+<p>THIS DOCUMENT IS WORK IN PROGRESS</p>
 </div>
 </td>
 </tr>
@@ -554,10 +551,44 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect1">
-<h2 id="setting_up_your_project"><a class="anchor" href="#setting_up_your_project"></a>Setting up your project</h2>
+<h2 id="step_1_deploy_launcher_image"><a class="anchor" href="#step_1_deploy_launcher_image"></a>Step 1 - Deploy Launcher image</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Visit <a href="https://cloud.google.com/" class="bare">https://cloud.google.com/</a> and select `Launcher`from the top menu.</p>
+</li>
+<li>
+<p>Click <code>Explore Launcher</code> and then search for Enonic XP</p>
+</li>
+<li>
+<p>You should now see the image below, click <code>Launch on Compute Engine</code></p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/launcher-image.png" alt="Enonic XP Launcher Image" width="100%">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="step_2_post_installation_steps"><a class="anchor" href="#step_2_post_installation_steps"></a>Step 2 - Post installation steps</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>With the development environment all set up, you are ready to create an application project. To be efficient, we will use a script to initialize our project from a template:</p>
+<p>TODO: Complete tour, create admin user, deploy custom app?</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="step_3_configuration_management"><a class="anchor" href="#step_3_configuration_management"></a>Step 3 - Configuration Management</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>TODO: Docker compose</p>
+</div>
+<div class="paragraph">
+<p>With the development set up, you are ready to create a project structure for the application. To be efficient, we will use an script to initialize our project from a template:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -571,20 +602,16 @@ table.CodeRay td.code>pre{padding:0}
 <p><strong>Follow the instructions</strong> run the init-project command. Use the name <code>my.first.app</code></p>
 </li>
 <li>
-<p><strong>Verify project files</strong>. The command will now have generated a project file structure. The most important files and folders for this tutorial are:</p>
+<p><strong>Verify project files</strong>. The command will now have generated a project file structure:</p>
 </li>
 </ol>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="files">build.gradle <i class="conum" data-value="1"></i><b>(1)</b>
+<pre>build.gradle <i class="conum" data-value="1"></i><b>(1)</b>
 gradle.properties <i class="conum" data-value="2"></i><b>(2)</b>
 src/
- main/
-  resources/ <i class="conum" data-value="3"></i><b>(3)</b>
-   assets/ <i class="conum" data-value="4"></i><b>(4)</b>
-   application.svg <i class="conum" data-value="5"></i><b>(5)</b>
-   application.xml <i class="conum" data-value="6"></i><b>(6)</b></code></pre>
+ main/</pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -597,22 +624,6 @@ src/
 <td><i class="conum" data-value="2"></i><b>2</b></td>
 <td>Specifies the name and version of the app and more</td>
 </tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>The main directory where code is placed</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>This is where we place css, images and javascript files to be served directly</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>Replace this icon to get a different icon for your app</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="6"></i><b>6</b></td>
-<td>Optionally change the description of your app here</td>
-</tr>
 </table>
 </div>
 <div class="admonitionblock note">
@@ -622,21 +633,19 @@ src/
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The video below demonstrates project initialization
+The other files and folders in the project structure are not relevant for this tutorial.
 </td>
 </tr>
 </table>
 </div>
-<div class="videoblock">
-<div class="content">
-<iframe src="https://www.youtube.com/embed/Fpudgai1Fsk?rel=0" frameborder="0" allowfullscreen></iframe>
-</div>
-</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="building_and_deploying"><a class="anchor" href="#building_and_deploying"></a>Building and Deploying</h2>
+<h2 id="step_4_https_and_virtual_hosts"><a class="anchor" href="#step_4_https_and_virtual_hosts"></a>Step 4 - HTTPS and virtual hosts</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>TODO:</p>
+</div>
 <div class="paragraph">
 <p>Now that we have a project, its time to build and deploy the app to the development environment.</p>
 </div>
@@ -655,26 +664,19 @@ The video below demonstrates project initialization
 </li>
 <li>
 <p>Deploy the app. This command will be placed</p>
-<div class="literalblock">
-<div class="content">
-<pre>./gradlew deploy</pre>
-</div>
-</div>
-</li>
-<li>
-<p>Verify that the app is installed and started from the Applications tool.</p>
 </li>
 </ol>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/app.png" alt="My First app started">
-</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="adding_a_root_controller"><a class="anchor" href="#adding_a_root_controller"></a>Adding a root controller</h2>
+<h2 id="step_5_backup"><a class="anchor" href="#step_5_backup"></a>Step 5 - Backup</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="step_6_upgrading_to_new_xp_versions"><a class="anchor" href="#step_6_upgrading_to_new_xp_versions"></a>Step 6 - Upgrading to new XP versions</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Its time to contribute some code in the form of a simple "Hello App" controller.
@@ -690,11 +692,7 @@ we instantly have a root controller for our web application:</p>
 <p><strong>Add some code</strong> to the main.js file and save:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="javascript">exports.<span class="function">get</span> = <span class="keyword">function</span>() {
-    <span class="keyword">return</span> {
-        <span class="key">body</span>: <span class="string"><span class="delimiter">'</span><span class="content">Hello App</span><span class="delimiter">'</span></span>,
-    };
-}</code></pre>
+<pre class="CodeRay highlight"><code data-lang="javascript"></code></pre>
 </div>
 </div>
 </li>
@@ -711,14 +709,9 @@ we instantly have a root controller for our web application:</p>
 </li>
 </ol>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="images/hello.png" alt="Output from main.js controller">
-</div>
-</div>
 <div class="quoteblock">
 <blockquote>
-Congratulations on building your first Enonic App!
+Congratulations, you now have a production-ready single server instance of Enonic XP running on the Google Cloud platform!
 </blockquote>
 <div class="attribution">
 &#8212; The Enonic Team
