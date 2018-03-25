@@ -13,7 +13,7 @@ THIS DOCUMENT IS WORK IN PROGRESS
 
 == Step 1 - Deploy Launcher image
 
-. Visit https://cloud.google.com/ and select `Launcher`from the top menu.
+. Visit https://cloud.google.com/ and select `Launcher` from the top menu.
 . Click `Explore Launcher` and then search for Enonic XP
 . You should now see the image below, click `Launch on Compute Engine`
 
