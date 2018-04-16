@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 1.5.3">
+<meta name="generator" content="Asciidoctor 1.5.6.1">
 <title>Launching Enonic XP on the Google Cloud Platform</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -17,7 +17,6 @@ audio:not([controls]){display:none;height:0}
 [hidden],template{display:none}
 script{display:none!important}
 html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
-body{margin:0}
 a{background:transparent}
 a:focus{outline:thin dotted}
 a:active,a:hover{outline:0}
@@ -52,7 +51,7 @@ textarea{overflow:auto;vertical-align:top}
 table{border-collapse:collapse;border-spacing:0}
 *,*:before,*:after{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}
 html,body{font-size:100%}
-body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;font-weight:400;font-style:normal;line-height:1;position:relative;cursor:auto}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;font-weight:400;font-style:normal;line-height:1;position:relative;cursor:auto;tab-size:4;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
 a:hover{cursor:pointer}
 img,object,embed{max-width:100%;height:auto}
 object,embed{height:100%}
@@ -64,7 +63,6 @@ img{-ms-interpolation-mode:bicubic}
 .text-center{text-align:center!important}
 .text-justify{text-align:justify!important}
 .hide{display:none}
-body{-webkit-font-smoothing:antialiased}
 img,object,svg{display:inline-block;vertical-align:middle}
 textarea{height:auto;min-height:50px}
 select{width:100%}
@@ -91,13 +89,12 @@ strong,b{font-weight:bold;line-height:inherit}
 small{font-size:60%;line-height:inherit}
 code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
 ul,ol,dl{font-size:1em;line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
-ul,ol,ul.no-bullet,ol.no-bullet{margin-left:1.5em}
+ul,ol{margin-left:1.5em}
 ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0;font-size:1em}
 ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
 ul.square{list-style-type:square}
 ul.circle{list-style-type:circle}
 ul.disc{list-style-type:disc}
-ul.no-bullet{list-style:none}
 ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
 dl dt{margin-bottom:.3125em;font-weight:bold}
 dl dd{margin-bottom:1.25em}
@@ -119,18 +116,25 @@ table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:
 table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
 table tr.even,table tr.alt,table tr:nth-of-type(even){background:#f8f8f7}
 table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{display:table-cell;line-height:1.6}
-body{tab-size:4}
 h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
 h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
 .clearfix:before,.clearfix:after,.float-group:before,.float-group:after{content:" ";display:table}
 .clearfix:after,.float-group:after{clear:both}
-*:not(pre)>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background-color:#f7f7f8;-webkit-border-radius:4px;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
+*:not(pre)>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background-color:#f7f7f8;-webkit-border-radius:4px;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed;word-wrap:break-word}
+*:not(pre)>code.nobreak{word-wrap:normal}
+*:not(pre)>code.nowrap{white-space:nowrap}
 pre,pre>code{line-height:1.45;color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;text-rendering:optimizeSpeed}
+em em{font-style:normal}
+strong strong{font-weight:400}
 .keyseq{color:rgba(51,51,51,.8)}
 kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background-color:#f7f7f7;border:1px solid #ccc;-webkit-border-radius:3px;border-radius:3px;-webkit-box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em white inset;box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em #fff inset;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
 .keyseq kbd:first-child{margin-left:0}
 .keyseq kbd:last-child{margin-right:0}
-.menuseq,.menu{color:rgba(0,0,0,.8)}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
 b.button:before,b.button:after{position:relative;top:-1px;font-weight:400}
 b.button:before{content:"[";padding:0 3px 0 2px}
 b.button:after{content:"]";padding:0 2px 0 3px}
@@ -197,7 +201,7 @@ table.tableblock>caption.title{white-space:nowrap;overflow:visible;max-width:0}
 table.tableblock #preamble>.sectionbody>.paragraph:first-of-type p{font-size:inherit}
 .admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
 .admonitionblock>table td.icon{text-align:center;width:80px}
-.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon img{max-width:initial}
 .admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
 .admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #ddddd8;color:rgba(0,0,0,.6)}
 .admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
@@ -253,13 +257,13 @@ table.pyhltable .linenodiv{background:none!important;padding-right:0!important}
 table.tableblock{max-width:100%;border-collapse:separate}
 table.tableblock td>.paragraph:last-child p>p:last-child,table.tableblock th>p:last-child,table.tableblock td>p:last-child{margin-bottom:0}
 table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
-table.grid-all th.tableblock,table.grid-all td.tableblock{border-width:0 1px 1px 0}
-table.grid-all tfoot>tr>th.tableblock,table.grid-all tfoot>tr>td.tableblock{border-width:1px 1px 0 0}
-table.grid-cols th.tableblock,table.grid-cols td.tableblock{border-width:0 1px 0 0}
-table.grid-all *>tr>.tableblock:last-child,table.grid-cols *>tr>.tableblock:last-child{border-right-width:0}
-table.grid-rows th.tableblock,table.grid-rows td.tableblock{border-width:0 0 1px 0}
-table.grid-all tbody>tr:last-child>th.tableblock,table.grid-all tbody>tr:last-child>td.tableblock,table.grid-all thead:last-child>tr>th.tableblock,table.grid-rows tbody>tr:last-child>th.tableblock,table.grid-rows tbody>tr:last-child>td.tableblock,table.grid-rows thead:last-child>tr>th.tableblock{border-bottom-width:0}
-table.grid-rows tfoot>tr>th.tableblock,table.grid-rows tfoot>tr>td.tableblock{border-width:1px 0 0 0}
+table.grid-all>thead>tr>.tableblock,table.grid-all>tbody>tr>.tableblock{border-width:0 1px 1px 0}
+table.grid-all>tfoot>tr>.tableblock{border-width:1px 1px 0 0}
+table.grid-cols>*>tr>.tableblock{border-width:0 1px 0 0}
+table.grid-rows>thead>tr>.tableblock,table.grid-rows>tbody>tr>.tableblock{border-width:0 0 1px 0}
+table.grid-rows>tfoot>tr>.tableblock{border-width:1px 0 0 0}
+table.grid-all>*>tr>.tableblock:last-child,table.grid-cols>*>tr>.tableblock:last-child{border-right-width:0}
+table.grid-all>tbody>tr:last-child>.tableblock,table.grid-all>thead:last-child>tr>.tableblock,table.grid-rows>tbody>tr:last-child>.tableblock,table.grid-rows>thead:last-child>tr>.tableblock{border-bottom-width:0}
 table.frame-all{border-width:1px}
 table.frame-sides{border-width:0 1px}
 table.frame-topbot{border-width:1px 0}
@@ -280,10 +284,12 @@ ul li ol{margin-left:1.5em}
 dl dd{margin-left:1.125em}
 dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
 ol>li p,ul>li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
-ul.unstyled,ol.unnumbered,ul.checklist,ul.none{list-style-type:none}
-ul.unstyled,ol.unnumbered,ul.checklist{margin-left:.625em}
-ul.checklist li>p:first-child>.fa-square-o:first-child,ul.checklist li>p:first-child>.fa-check-square-o:first-child{width:1em;font-size:.85em}
-ul.checklist li>p:first-child>input[type="checkbox"]:first-child{width:1em;position:relative;top:1px}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+ul.checklist{margin-left:.625em}
+ul.checklist li>p:first-child>.fa-square-o:first-child,ul.checklist li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist li>p:first-child>input[type="checkbox"]:first-child{margin-right:.25em}
 ul.inline{margin:0 auto .625em auto;margin-left:-1.375em;margin-right:0;padding:0;list-style:none;overflow:hidden}
 ul.inline>li{list-style:none;float:left;margin-left:1.375em;display:block}
 ul.inline>li>*{display:block}
@@ -300,7 +306,8 @@ ol.lowergreek{list-style-type:lower-greek}
 td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
 td.hdlist1{font-weight:bold;padding-bottom:1.25em}
 .literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
-.colist>table tr>td:first-of-type{padding:0 .75em;line-height:1}
+.colist>table tr>td:first-of-type{padding:.4em .75em 0 .75em;line-height:1;vertical-align:top}
+.colist>table tr>td:first-of-type img{max-width:initial}
 .colist>table tr>td:last-of-type{padding:.25em 0}
 .thumb,.th{line-height:0;display:inline-block;border:solid 4px #fff;-webkit-box-shadow:0 0 0 1px #ddd;box-shadow:0 0 0 1px #ddd}
 .imageblock.left,.imageblock[style*="float: left"]{margin:.25em .625em 1.25em 0}
@@ -363,6 +370,7 @@ div.unbreakable{page-break-inside:avoid}
 .yellow{color:#bfbf00}
 .yellow-background{background-color:#fafa00}
 span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
 .admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
 .admonitionblock td.icon .icon-note:before{content:"\f05a";color:#19407c}
 .admonitionblock td.icon .icon-tip:before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
@@ -416,98 +424,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 .hide-for-print{display:none!important}
 .show-for-print{display:inherit!important}}
 </style>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
-<style>
-/* Stylesheet for CodeRay to match GitHub theme | MIT License | http://foundation.zurb.com */
-/*pre.CodeRay {background-color:#f7f7f8;}*/
-.CodeRay .line-numbers{border-right:1px solid #d8d8d8;padding:0 0.5em 0 .25em}
-.CodeRay span.line-numbers{display:inline-block;margin-right:.5em;color:rgba(0,0,0,.3)}
-.CodeRay .line-numbers strong{color:rgba(0,0,0,.4)}
-table.CodeRay{border-collapse:separate;border-spacing:0;margin-bottom:0;border:0;background:none}
-table.CodeRay td{vertical-align: top;line-height:1.45}
-table.CodeRay td.line-numbers{text-align:right}
-table.CodeRay td.line-numbers>pre{padding:0;color:rgba(0,0,0,.3)}
-table.CodeRay td.code{padding:0 0 0 .5em}
-table.CodeRay td.code>pre{padding:0}
-.CodeRay .debug{color:#fff !important;background:#000080 !important}
-.CodeRay .annotation{color:#007}
-.CodeRay .attribute-name{color:#000080}
-.CodeRay .attribute-value{color:#700}
-.CodeRay .binary{color:#509}
-.CodeRay .comment{color:#998;font-style:italic}
-.CodeRay .char{color:#04d}
-.CodeRay .char .content{color:#04d}
-.CodeRay .char .delimiter{color:#039}
-.CodeRay .class{color:#458;font-weight:bold}
-.CodeRay .complex{color:#a08}
-.CodeRay .constant,.CodeRay .predefined-constant{color:#008080}
-.CodeRay .color{color:#099}
-.CodeRay .class-variable{color:#369}
-.CodeRay .decorator{color:#b0b}
-.CodeRay .definition{color:#099}
-.CodeRay .delimiter{color:#000}
-.CodeRay .doc{color:#970}
-.CodeRay .doctype{color:#34b}
-.CodeRay .doc-string{color:#d42}
-.CodeRay .escape{color:#666}
-.CodeRay .entity{color:#800}
-.CodeRay .error{color:#808}
-.CodeRay .exception{color:inherit}
-.CodeRay .filename{color:#099}
-.CodeRay .function{color:#900;font-weight:bold}
-.CodeRay .global-variable{color:#008080}
-.CodeRay .hex{color:#058}
-.CodeRay .integer,.CodeRay .float{color:#099}
-.CodeRay .include{color:#555}
-.CodeRay .inline{color:#000}
-.CodeRay .inline .inline{background:#ccc}
-.CodeRay .inline .inline .inline{background:#bbb}
-.CodeRay .inline .inline-delimiter{color:#d14}
-.CodeRay .inline-delimiter{color:#d14}
-.CodeRay .important{color:#555;font-weight:bold}
-.CodeRay .interpreted{color:#b2b}
-.CodeRay .instance-variable{color:#008080}
-.CodeRay .label{color:#970}
-.CodeRay .local-variable{color:#963}
-.CodeRay .octal{color:#40e}
-.CodeRay .predefined{color:#369}
-.CodeRay .preprocessor{color:#579}
-.CodeRay .pseudo-class{color:#555}
-.CodeRay .directive{font-weight:bold}
-.CodeRay .type{font-weight:bold}
-.CodeRay .predefined-type{color:inherit}
-.CodeRay .reserved,.CodeRay .keyword {color:#000;font-weight:bold}
-.CodeRay .key{color:#808}
-.CodeRay .key .delimiter{color:#606}
-.CodeRay .key .char{color:#80f}
-.CodeRay .value{color:#088}
-.CodeRay .regexp .delimiter{color:#808}
-.CodeRay .regexp .content{color:#808}
-.CodeRay .regexp .modifier{color:#808}
-.CodeRay .regexp .char{color:#d14}
-.CodeRay .regexp .function{color:#404;font-weight:bold}
-.CodeRay .string{color:#d20}
-.CodeRay .string .string .string{background:#ffd0d0}
-.CodeRay .string .content{color:#d14}
-.CodeRay .string .char{color:#d14}
-.CodeRay .string .delimiter{color:#d14}
-.CodeRay .shell{color:#d14}
-.CodeRay .shell .delimiter{color:#d14}
-.CodeRay .symbol{color:#990073}
-.CodeRay .symbol .content{color:#a60}
-.CodeRay .symbol .delimiter{color:#630}
-.CodeRay .tag{color:#008080}
-.CodeRay .tag-special{color:#d70}
-.CodeRay .variable{color:#036}
-.CodeRay .insert{background:#afa}
-.CodeRay .delete{background:#faa}
-.CodeRay .change{color:#aaf;background:#007}
-.CodeRay .head{color:#f8f;background:#505}
-.CodeRay .insert .insert{color:#080}
-.CodeRay .delete .delete{color:#800}
-.CodeRay .change .change{color:#66f}
-.CodeRay .head .head{color:#f4f}
-</style>
 </head>
 <body class="article toc2 toc-right">
 <div id="header">
@@ -515,12 +431,14 @@ table.CodeRay td.code>pre{padding:0}
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#step_1_deploy_launcher_image">Step 1 - Deploy Launcher image</a></li>
-<li><a href="#step_2_post_installation_steps">Step 2 - Post installation steps</a></li>
-<li><a href="#step_3_configuration_management">Step 3 - Configuration Management</a></li>
-<li><a href="#step_4_https_and_virtual_hosts">Step 4 - HTTPS and virtual hosts</a></li>
-<li><a href="#step_5_backup">Step 5 - Backup</a></li>
-<li><a href="#step_6_upgrading_to_new_xp_versions">Step 6 - Upgrading to new XP versions</a></li>
+<li><a href="#_deploy_launcher_image">Deploy Launcher image</a></li>
+<li><a href="#_login_and_welcome_tour">Login and Welcome Tour</a></li>
+<li><a href="#_create_the_admin_user">Create the admin user</a></li>
+<li><a href="#_system_management">System Management</a></li>
+<li><a href="#_virtual_host_configuration">Virtual host configuration</a></li>
+<li><a href="#_https_configuration">HTTPS configuration</a></li>
+<li><a href="#_backup">Backup</a></li>
+<li><a href="#_upgrading">Upgrading</a></li>
 </ul>
 </div>
 </div>
@@ -536,7 +454,7 @@ table.CodeRay td.code>pre{padding:0}
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
+<div class="title">Warning</div>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -551,164 +469,606 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect1">
-<h2 id="step_1_deploy_launcher_image"><a class="anchor" href="#step_1_deploy_launcher_image"></a>Step 1 - Deploy Launcher image</h2>
+<h2 id="_deploy_launcher_image">Deploy Launcher image</h2>
 <div class="sectionbody">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
+<table class="tableblock frame-none grid-none spread">
+<colgroup>
+<col style="width: 1%;">
+<col style="width: 99%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>1</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Visit <a href="https://cloud.google.com/" class="bare">https://cloud.google.com/</a> and select <code>Launcher</code> from the top menu.</p>
-</li>
-<li>
-<p>Click <code>Explore Launcher</code> and then search for Enonic XP</p>
-</li>
-<li>
-<p>You should now see the image below, click <code>Launch on Compute Engine</code></p>
-</li>
-</ol>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>2</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Click  <b class="button">Explore Launcher</b> and then search for Enonic XP.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>3</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>You should now see the image below, click <b class="button">Launch on Compute Engine</b></p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/launcher-image.png" alt="Enonic XP Launcher Image" width="100%">
+<img src="images/launcher-image.png" alt="Enonic XP Launcher Image">
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>4</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>You should now see the image below:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/launcher-deploy.png" alt="Deploy Enonic XP">
+</div>
+</div>
+<div class="paragraph">
+<p>You may optionally change the settings above to match your requirements.</p>
+</div>
+<div class="paragraph">
+<p>When ready, press <b class="button">Deploy</b>.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>5</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>You will now see a new screen as the server is starting.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/launcher-booting.png" alt="Deploy Enonic XP">
+</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The launch process typically takes 1 to 2 minutes, all depending on the server size.
+After the Google Cloud loading icons stop spinning, the image might not be ready.
+XP docker containers are built in the background - during this time you might see a 503 error so please have patience.</p>
+</div>
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_login_and_welcome_tour">Login and Welcome Tour</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When you have confirmed the server is running, it is time to login to the Admin Console.</p>
+</div>
+<table class="tableblock frame-none grid-none spread">
+<colgroup>
+<col style="width: 1%;">
+<col style="width: 99%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>1</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Click <b class="button">Log into the Admin Panel</b> from the right panel to access Enonic XP Admin Console</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/launcher-details.png" alt="Deployment details">
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>2</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Sign in with username <code>su</code> and the temporary password listed in the right panel</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/xp-login.png" alt="Deployment details" width="449px">
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>3</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><strong>Complete "Welcome Tour":</strong> The first time you visit your installation, the Welcome Tour will be displayed.
+Go through the steps, and optionally install the demo applications.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+The welcome tour is only displayed for administrative users, and can be disabled using configuration options.
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_create_the_admin_user">Create the admin user</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Using the "Super User" <code>su</code> to manage your instance is not recommended, also the temporary password will be reset every time you restart the instance.
+As such we need to create an administrative user that can be used on a permanent basis</p>
+</div>
+<table class="tableblock frame-none grid-none spread">
+<colgroup>
+<col style="width: 1%;">
+<col style="width: 99%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>1</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><strong>Open Users tool:</strong> From the launcher panel on the right (optionally hidden behind the top right burger icon) click <b class="button">Users</b>.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>2</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><strong>New User:</strong> To create a new user simply click <b class="button">New</b> and then <b class="button">User</b> from the top menu.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/xp-user-new.png" alt="New User" width="600px">
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>3</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><strong>Set the user name:</strong> This is a personal user - choose your favorite user name</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/xp-user-name.png" alt="New User" width="500px">
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>4</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><strong>Set the password:</strong> This user will have access to your entire system, make sure to use a secure password.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/xp-user-password.png" alt="Strong password">
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+The password is hashed, and never stored as plain text in XP
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>5</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><strong>Add roles:</strong> Finish off by adding roles to the user: "Administrator" and "Admin Console Login".</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/xp-user-roles.png" alt="User roles">
+</div>
+</div>
+<div class="paragraph">
+<p>When ready press <b class="button">Save</b></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>6</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><strong>Verify the user:</strong> To make sure the user is working properly, log out from the bottom of the launcher menu, and test logging in again with your new user</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_system_management">System Management</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The launcher image includes the essential tools you need to run XP in production mode.
+The server is configured and managed using Docker compose, which orchestrates the three embedded Docker images: Enonic XP, Apache and the postfix mail server</p>
+</div>
+<div class="paragraph">
+<p>This setup gives you an excellent way to manage the configuration of your server without changing any of the software packages directly.</p>
+</div>
+<div class="paragraph">
+<p>To access the server command line click the <b class="button">SSH</b> button from the right panel in the Google Cloud console.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+You cannot run as root on GCP instances, so you may need to "sudo" your commands if permissions are denied
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>You should now get access to the command line prompt:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ubuntu-cli.png" alt="Command line access">
+</div>
+</div>
+<div class="paragraph">
+<p>If you have not worked with Docker before, we recommend you to have a look at <a href="https://docs.docker.com/">Dockers excellent documentation</a>.</p>
+</div>
+<div class="paragraph">
+<p>Here is a list of common operations you may want to try out:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>List running containers</p>
+<div class="literalblock">
+<div class="content">
+<pre>sudo docker ps</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Show last 100 log lines from a container</p>
+<div class="literalblock">
+<div class="content">
+<pre>sudo docker logs --tail 100 &lt;containerID&gt;</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If you need to change the configuration of a container you need to update the configuration files, remove, rebuild and start the changed containers.
+For this purpose, we use docker-compose. Docker can manage all the containers on your server at once, and also takes care of exposing ports between the containers.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+At first this might seem complicated compared to manipulating a container directly. However it enables you to safely apply, and even rollback changes to a container.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To use docker-compose, you need to change to the directory where your configuration files are stored.
+Default location:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>cd /srv/docker-compose-enonic-xp/</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now, you may browse and optionally edit the configuration files of your server.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+Consider using Git to store your configuration files, this enables you to safely manage and rollback any changes you have made to the configuration at any time
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>As an example, if you have changed the configuration of Apache and want to redeploy it:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>docker-compose rebuild apache2</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>docker-compose up -d --no-deps apache2</pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="step_2_post_installation_steps"><a class="anchor" href="#step_2_post_installation_steps"></a>Step 2 - Post installation steps</h2>
+<h2 id="_virtual_host_configuration">Virtual host configuration</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>TODO: Complete tour, create admin user, deploy custom app?</p>
+<p>When you are ready to start using the server for production purposes, the following steps will enable you to route a domain to your server and route it to a specific site or application within XP.</p>
 </div>
+<table class="tableblock frame-none grid-none spread">
+<colgroup>
+<col style="width: 1%;">
+<col style="width: 99%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>1</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><strong>Reserve a permanent IP:</strong> When your instance is first launched, it will be running with a so-called ephemeral IP. In order to reserve a static IP follow this documentation: <a href="https://cloud.google.com/compute/docs/ip-addresses/reserve-static-external-ip-address" class="bare">https://cloud.google.com/compute/docs/ip-addresses/reserve-static-external-ip-address</a></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>2</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><strong>Point your domain to the static IP:</strong> Once you have an IP, point your domain to this IP through settings from your DNS provider</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>3</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><strong>Disable default vhost:</strong> Rename the file <code>0-default.conf</code> located in <code>srv/docker-compose-enonic-xp/apache2/sites/</code> to <code>0-default.conf.disabled</code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>4</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><strong>Add custom virtualhost to Apache:</strong> We can now configure a our custom virtualhost in Apache.</p>
 </div>
-</div>
-<div class="sect1">
-<h2 id="step_3_configuration_management"><a class="anchor" href="#step_3_configuration_management"></a>Step 3 - Configuration Management</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>TODO: Docker compose</p>
+<p>Adding a specific apache virtualhost will enable us to control logging, redirects, rewrites and other traffic elements for a specific domain.</p>
 </div>
 <div class="paragraph">
-<p>With the development set up, you are ready to create a project structure for the application. To be efficient, we will use an script to initialize our project from a template:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Go to the Vanilla Starter Kit</strong> on <a href="https://market.enonic.com/vendors/enonic/vanilla-starter">Enonic Market</a></p>
-</li>
-<li>
-<p><strong>Click the <span class="image"><img src="images/clone.png" alt="Clone" width="80"></span> button.</strong></p>
-</li>
-<li>
-<p><strong>Follow the instructions</strong> run the init-project command. Use the name <code>my.first.app</code></p>
-</li>
-<li>
-<p><strong>Verify project files</strong>. The command will now have generated a project file structure:</p>
-</li>
-</ol>
+<p>To setup a custom virtualhost copy and rename the file <code>sample.conf.template</code> to for instance <code>domain.com.conf</code>.
+Edit the new file with your custom settings. It should look something like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>build.gradle <i class="conum" data-value="1"></i><b>(1)</b>
-gradle.properties <i class="conum" data-value="2"></i><b>(2)</b>
-src/
- main/</pre>
+<pre class="highlight"><code class="language-apache" data-lang="apache">&lt;VirtualHost *:80&gt;
+
+  ServerName domain.com
+  ServerAlias www.domain.com
+
+  DocumentRoot /var/www/html/
+
+  ProxyRequests Off
+  ProxyPreserveHost On
+
+  ProxyPass / http://exp:8080/
+  ProxyPassReverse / http://exp:8080/
+
+  RewriteEngine on
+
+  # Support web socket for this vhost
+  RewriteCond %{HTTP:Upgrade} =websocket [NC]
+  RewriteRule /(.*) ws://exp:8080/$1 [P,L]
+
+  # Send traffic to domain without www
+  RewriteCond %{HTTP_HOST} !^domain\.com$
+  RewriteCond %{HTTP_HOST} !^$
+  RewriteRule ^/(.*) http://domain.com/$1 [L,R]
+
+&lt;/VirtualHost&gt;</code></pre>
 </div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Contains metadata on the maker of the app and more</td>
+</div></div></td>
 </tr>
 <tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Specifies the name and version of the app and more</td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>5</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><strong>Configure XP vhost:</strong> In the standard configuration, Apache will to proxy all incoming traffic to a single port in XP (8080).</p>
+</div>
+<div class="paragraph">
+<p>XP vhosts are used to route traffic from a specific domain to a specific path in XP i.e. admin.domain.com &#8594; /admin (Admin console), or domain.com &#8594; /portal/master/mysite  (A specific site).
+By default vhosts are disabled, allowing all incoming traffic to access all paths.</p>
+</div>
+<div class="paragraph">
+<p>To configure a vhost, simply edit the file <code>com.enonic.xp.web.vhost.cfg</code> located in <code>/srv/docker-compose-enonic-xp/exp/config</code>.</p>
+</div>
+<div class="paragraph">
+<p>A vhost configuration for "domain.com" might look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-properties" data-lang="properties">enabled = true
+
+mapping.mysite.host = domain.com
+mapping.mysite.source = /
+mapping.mysite.target = /portal/master/mysite
+
+mapping.admin.host = domain.com
+mapping.admin.source = /admin
+mapping.admin.target = /admin
+mapping.admin.userStore = system</code></pre>
+</div>
+</div></div></td>
 </tr>
-</table>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>4</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><strong>Deploy changes</strong> In order to deploy the new configuration, run the following commands:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>docker-compose build apache2 exp</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This command builds new containers with the updated configuration (old containers will still be running)</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>docker-compose up -d --no-deps apache2 exp</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will stop the old image of Apache and Enonic XP, remove the containers, and deploy and start the new containers including the updated configuration.</p>
 </div>
 <div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<div class="title">Note</div>
 </td>
 <td class="content">
-The other files and folders in the project structure are not relevant for this tutorial.
+Enonic XP does not actually require a restart to load updated configuration files (with the exception of <code>system.properties</code>). However, this setup provides a nice and consistent way to manage your configuration.
+You can customize XP to load configuration dynamically if desired.
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_https_configuration">HTTPS configuration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The image ships with a self-signed SSL certificate, which cannot be used for production purposes.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+To complete this task you first need to configure a custom apache vhost as specified above.
 </td>
 </tr>
 </table>
 </div>
+<table class="tableblock frame-none grid-none spread">
+<colgroup>
+<col style="width: 1%;">
+<col style="width: 99%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>1</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><strong>Reserve a permanent IP:</strong> Start by reserving a fixed IP from Google Cloud (TODO)</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>2</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><strong>Add domain to Apache:</strong> (TODO)</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>3</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><strong>Configure vhost in XP:</strong> Finally, since all traffic from apache is sent to a single port in XP, we need to configure the vhost file to route the domain to the proper path in XP. (TODO)</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="sect1">
-<h2 id="step_4_https_and_virtual_hosts"><a class="anchor" href="#step_4_https_and_virtual_hosts"></a>Step 4 - HTTPS and virtual hosts</h2>
+<h2 id="_backup">Backup</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>TODO:</p>
+<p>First of all, We recommend storing the docker-compose configuration files in a Git repository. Any changes you make to you configuration will then be duplicated to your git repo.
+This will effectively act as a backup for your configuration.</p>
+</div>
+<table class="tableblock frame-none grid-none spread">
+<colgroup>
+<col style="width: 1%;">
+<col style="width: 99%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>1</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><strong>Install Snapshotter app</strong> When installed, the Snapshotter app[<a href="https://market.enonic.com/vendors/enonic/snapshotter" class="bare">https://market.enonic.com/vendors/enonic/snapshotter</a>] will automatically snapshot your data on a regular frequency.
+This will enable you to rollback to a snapshot quickly if needed.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>2</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><strong>Backup your files:</strong> As long as snapshots are running, we only need to copy the the data files to your backup device.</p>
 </div>
 <div class="paragraph">
-<p>Now that we have a project, its time to build and deploy the app to the development environment.</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Change directory</strong> to your newly created project folder</p>
-</li>
-<li>
-<p><strong>Run the build script</strong>. The app file will be placed in the build/libs/ folder.</p>
-<div class="literalblock">
-<div class="content">
-<pre>./gradlew build</pre>
-</div>
-</div>
-</li>
-<li>
-<p>Deploy the app. This command will be placed</p>
-</li>
-</ol>
+<p>As we are using Docker, the backup files are not directly accessible from your filesystem.
+More specifically,</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Additionally, Enonic XP also provides Dump (complete dump of all data) and Export (export of selected data) services for moving data out of the system.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="step_5_backup"><a class="anchor" href="#step_5_backup"></a>Step 5 - Backup</h2>
-<div class="sectionbody">
-
-</div>
-</div>
-<div class="sect1">
-<h2 id="step_6_upgrading_to_new_xp_versions"><a class="anchor" href="#step_6_upgrading_to_new_xp_versions"></a>Step 6 - Upgrading to new XP versions</h2>
+<h2 id="_upgrading">Upgrading</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Its time to contribute some code in the form of a simple "Hello App" controller.
-By placing a Javascript file called main.js in the resources/ folder of our project,
-we instantly have a root controller for our web application:</p>
+<p>To upgrade to a new version of Enonic XP:</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Create a new file</strong> called <code>src/main/resources/main.js</code> in your project.</p>
-</li>
-<li>
-<p><strong>Add some code</strong> to the main.js file and save:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="javascript"></code></pre>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+Upgrading XP should always be tested in a QA environment before you apply it to your production server
+</td>
+</tr>
+</table>
 </div>
-</div>
-</li>
-<li>
-<p><strong>Build and deploy</strong> your application once more. NB! The deploy command will both build and deploy the app</p>
-<div class="literalblock">
-<div class="content">
-<pre>./gradlew deploy</pre>
-</div>
-</div>
-</li>
-<li>
-<p><strong>Test the webapp</strong>. It should be available on <a href="http://localhost:8080/app/my.first.app" class="bare">http://localhost:8080/app/my.first.app</a> You can also find the link from the admin Applications UI. If everything went well, it will look somethink like the screenshot below:</p>
-</li>
-</ol>
-</div>
+<table class="tableblock frame-none grid-none spread">
+<colgroup>
+<col style="width: 1%;">
+<col style="width: 99%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>1</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><strong>Read Release notes</strong> Start by carefully reading the upgrade notes from Enonic to make sure you follow any required steps to complete the upgrade.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>2</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><strong>Update Docker configuration:</strong> As long as you are upgrading to a new feature of fix release, i.e. from XP 6.14.1 to 6.15.0 you should be able to upgrade simply by changing the first line of the file <code>/srv/docker-compose-enonic-xp/exp/Dockerfile</code>. This line specifies the XP docker container to use.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 <div class="quoteblock">
 <blockquote>
 Congratulations, you now have a production-ready single server instance of Enonic XP running on the Google Cloud platform!
@@ -718,6 +1078,11 @@ Congratulations, you now have a production-ready single server instance of Enoni
 </div>
 </div>
 </div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2018-04-16 10:48:21 CEST
 </div>
 </div>
 </body>

@@ -16,6 +16,8 @@ THIS DOCUMENT IS WORK IN PROGRESS
 == Deploy Launcher image
 
 [cols="1%s,99%a"]
+[frame="none"]
+[grid="none"]
 |============================
 |1| Visit https://cloud.google.com/ and select `Launcher` from the top menu.
 |2| Click  btn:[Explore Launcher] and then search for Enonic XP.
@@ -47,6 +49,8 @@ XP docker containers are built in the background - during this time you might se
 When you have confirmed the server is running, it is time to login to the Admin Console.
 
 [cols="1%s,99%a"]
+[frame="none"]
+[grid="none"]
 |============================
 |1| Click btn:[Log into the Admin Panel] from the right panel to access Enonic XP Admin Console
 
@@ -69,6 +73,8 @@ Using the "Super User" `su` to manage your instance is not recommended, also the
 As such we need to create an administrative user that can be used on a permanent basis
 
 [cols="1%s,99%a"]
+[frame="none"]
+[grid="none"]
 |============================
 |1| *Open Users tool:* From the launcher panel on the right (optionally hidden behind the top right burger icon) click btn:[Users].
 |2| *New User:* To create a new user simply click btn:[New] and then btn:[User] from the top menu.
@@ -142,6 +148,8 @@ As an example, if you have changed the configuration of Apache and want to redep
 When you are ready to start using the server for production purposes, the following steps will enable you to route a domain to your server and route it to a specific site or application within XP.
 
 [cols="1%s,99%a"]
+[frame="none"]
+[grid="none"]
 |============================
 |1| *Reserve a permanent IP:* When your instance is first launched, it will be running with a so-called ephemeral IP. In order to reserve a static IP follow this documentation: https://cloud.google.com/compute/docs/ip-addresses/reserve-static-external-ip-address
 |2| *Point your domain to the static IP:* Once you have an IP, point your domain to this IP through settings from your DNS provider
@@ -227,6 +235,8 @@ The image ships with a self-signed SSL certificate, which cannot be used for pro
 NOTE: To complete this task you first need to configure a custom apache vhost as specified above.
 
 [cols="1%s,99%a"]
+[frame="none"]
+[grid="none"]
 |============================
 |1| *Reserve a permanent IP:* Start by reserving a fixed IP from Google Cloud (TODO)
 |2| *Add domain to Apache:* (TODO)
@@ -241,6 +251,8 @@ This will effectively act as a backup for your configuration.
 
 
 [cols="1%s,99%a"]
+[frame="none"]
+[grid="none"]
 |============================
 |1| *Install Snapshotter app* When installed, the Snapshotter app[https://market.enonic.com/vendors/enonic/snapshotter] will automatically snapshot your data on a regular frequency.
 This will enable you to rollback to a snapshot quickly if needed.
@@ -260,6 +272,8 @@ To upgrade to a new version of Enonic XP:
 WARNING: Upgrading XP should always be tested in a QA environment before you apply it to your production server
 
 [cols="1%s,99%a"]
+[frame="none"]
+[grid="none"]
 |============================
 |1| *Read Release notes* Start by carefully reading the upgrade notes from Enonic to make sure you follow any required steps to complete the upgrade.
 |2| *Update Docker configuration:* As long as you are upgrading to a new feature of fix release, i.e. from XP 6.14.1 to 6.15.0 you should be able to upgrade simply by changing the first line of the file `/srv/docker-compose-enonic-xp/exp/Dockerfile`. This line specifies the XP docker container to use.
