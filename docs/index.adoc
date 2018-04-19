@@ -19,7 +19,7 @@ THIS DOCUMENT IS WORK IN PROGRESS
 [frame="none"]
 [grid="none"]
 |============================
-|1| Visit https://cloud.google.com/ and select `Launcher` from the top menu.
+|1| Visit https://cloud.google.com/[Google Cloud] and select `Launcher` from the top menu.
 |2| Click  btn:[Explore Launcher] and then search for Enonic XP.
 |3| You should now see the image below, click btn:[Launch on Compute Engine]
 
@@ -170,22 +170,22 @@ When you are ready to start using the server for production purposes, the follow
 [frame="none"]
 [grid="none"]
 |============================
-|1| *Reserve a permanent IP:* When your instance is first launched, it will be running with a so-called ephemeral IP. In order to reserve a static IP follow this documentation: https://cloud.google.com/compute/docs/ip-addresses/reserve-static-external-ip-address
+|1| *Reserve a permanent IP:* When your instance is first launched, it will be running with a so-called ephemeral IP. In order to reserve a static IP follow https://cloud.google.com/compute/docs/ip-addresses/reserve-static-external-ip-address[Googles Documentation]
 |2| *Point your domain to the static IP:* Once you have an IP, point your domain to this IP through settings from your DNS provider
 |3| *Disable default vhost:* Rename the file `0-default.conf` located in `srv/docker-compose-enonic-xp/apache2/sites/` to `0-default.conf.disabled`.
 |4| *Add custom virtualhost to Apache:* We can now configure a our custom virtualhost in Apache.
 
 Adding a specific apache virtualhost will enable us to control logging, redirects, rewrites and other traffic elements for a specific domain.
 
-To setup a custom virtualhost copy and rename the file `sample.conf.template` to for instance `domain.com.conf`.
+To setup a custom virtualhost copy and rename the file `sample.conf.template` to for instance `example.com.conf`.
 Edit the new file with your custom settings. It should look something like this:
 
 [source,apache]
 ----
 <VirtualHost *:80>
 
-  ServerName domain.com
-  ServerAlias www.domain.com
+  ServerName example.com
+  ServerAlias www.example.com
 
   DocumentRoot /var/www/html/
 
@@ -202,31 +202,33 @@ Edit the new file with your custom settings. It should look something like this:
   RewriteRule /(.*) ws://exp:8080/$1 [P,L]
 
   # Send traffic to domain without www
-  RewriteCond %{HTTP_HOST} !^domain\.com$
+  RewriteCond %{HTTP_HOST} !^example\.com$
   RewriteCond %{HTTP_HOST} !^$
-  RewriteRule ^/(.*) http://domain.com/$1 [L,R]
+  RewriteRule ^/(.*) http://example.com/$1 [L,R]
 
 </VirtualHost>
 ----
 
 |5| *Configure XP vhost:* In the standard configuration, Apache will to proxy all incoming traffic to a single port in XP (8080).
 
-XP vhosts are used to route traffic from a specific domain to a specific path in XP i.e. admin.domain.com -> /admin (Admin console), or domain.com -> /portal/master/mysite  (A specific site).
+XP vhosts are used to route traffic from a specific domain to a specific path in XP i.e. admin.example.com -> /admin (Admin console), or example.com -> /portal/master/mysite  (A specific site).
 By default vhosts are disabled, allowing all incoming traffic to access all paths.
 
 To configure a vhost, simply edit the file `com.enonic.xp.web.vhost.cfg` located in `/srv/docker-compose-enonic-xp/exp/config`.
 
-A vhost configuration for "domain.com" might look like this:
+A vhost configuration for "example.com" might look like this:
 
 [source,properties]
 ----
 enabled = true
 
-mapping.mysite.host = domain.com
+# Route traffic to mysite
+mapping.mysite.host = example.com
 mapping.mysite.source = /
 mapping.mysite.target = /portal/master/mysite
 
-mapping.admin.host = domain.com
+# Route /admin to admin console
+mapping.admin.host = example.com
 mapping.admin.source = /admin
 mapping.admin.target = /admin
 mapping.admin.userStore = system
@@ -253,37 +255,37 @@ NOTE: To complete this task you first need to configure a custom apache vhost as
 
 The image ships with a self-signed certificate, which cannot be used for production purposes.
 
-Follow these steps to add your custom certificate for "domain.com":
+Follow these steps to add your custom certificate for "example.com":
 
 [cols="1%s,99%a"]
 [frame="none"]
 [grid="none"]
 |============================
-|1| *Get a certificate:* Get a certificate from your favorite provider: https://en.wikipedia.org/wiki/Certificate_authority#Providers. (You will minimum get two files - public and private certs)
+|1| *Get a certificate:* Get a certificate from https://en.wikipedia.org/wiki/Certificate_authority#Providers[your favorite provider]. (You will minimum get two files - public and private certs)
 |2| *Add certificates to Apache:* Copy the files you got from step 1 into `/srv/docker-compose-enonic-xp/apache2/ssl/`
 
 NOTE: The generated certificate files that exist in the ssl/ folder can be removed when you no longer need them, along with the 0-default.conf virtual host.
 
 |3| *Configure virtual host:* You now need edit the virtual host file we created earlier, in order to enable HTTPS.
 
-This example redirects all http traffic for domain.com or www.domain.com, to https://domain.com
+This example redirects all http traffic for example.com or www.example.com, to https://example.com
 
 [source,apache]
 ----
 <VirtualHost *:80>
 
-  ServerName domain.com
-  ServerAlias www.domain.com
+  ServerName example.com
+  ServerAlias www.example.com
 
   DocumentRoot /var/www/html/
 
-  Redirect 301 "/" "https://domain.com"
+  Redirect 301 "/" "https://example.com"
 
 </VirtualHost>
 
 <VirtualHost *:443>
 
-  ServerName domain.com
+  ServerName example.com
 
   DocumentRoot /var/www/html/
 
@@ -304,8 +306,8 @@ This example redirects all http traffic for domain.com or www.domain.com, to htt
 
   # Update the filenames below to match your certificates
   SSLEngine on
-  SSLCertificateFile /etc/apache2/ssl/domain.com.public.crt
-  SSLCertificateKeyFile /etc/apache2/ssl/domain.com.key
+  SSLCertificateFile /etc/apache2/ssl/example.com.public.crt
+  SSLCertificateKeyFile /etc/apache2/ssl/example.com.key
   SSLCertificateChainFile /etc/apache2/ssl/ca.chain
 
 </VirtualHost>
@@ -323,7 +325,7 @@ SSLStaplingCache shmcb:/var/run/ocsp(128000)
 
 |============================
 
-TIP: If you want to configure Content Delivery Network (CDN) support with caching and optionally run HTTPS externally, consider [Google CDN]https://cloud.google.com/cdn/docs/ or [Cloudflare]https://www.cloudflare.com/
+TIP: If you want to configure Content Delivery Network (CDN) support with caching and optionally run HTTPS externally, consider https://cloud.google.com/cdn/docs/[Google CDN] or https://www.cloudflare.com/[Cloudflare]
 
 == Backup
 
@@ -341,8 +343,8 @@ NOTE: All core data produced by Enonic XP is stored in the $XP_HOME/data/ folder
 [grid="none"]
 |============================
 |1| *Run XP Snapshots* To enable quick rollbacks, and get the ability to restore to a point-in-time. We need to take snapshots before backing up our data.
-The simplest way to do this is by installing the [Snapshotter app]https://market.enonic.com/vendors/enonic/snapshotter which will automatically snapshot your data on a regular frequency.
-|3| *Alt 1 - Google Snapshot:*  As this is not a clustered deployment, a fast and efficient way to backup your entire instance is to use [Googles Disk snapshot]https://cloud.google.com/compute/docs/disks/create-snapshots.
+The simplest way to do this is by installing the https://market.enonic.com/vendors/enonic/snapshotter[Snapshotter app] which will automatically snapshot your data on a regular frequency.
+|3| *Alt 1 - Google Snapshot:*  As this is not a clustered deployment, a fast and efficient way to backup your entire instance is to use https://cloud.google.com/compute/docs/disks/create-snapshots[Googles Disk snapshot].
 |2| *Alt 2 - Docker Backup:*  Simply copy the contents of `/var/lib/docker/` to your backup device. This will backup both data and the running containers.
 
 TIP: If you only want to optimize the size of your backup, only backup the contents of `/var/lib/docker/volumes/`. This will complicate the restore process slightly.
@@ -353,7 +355,7 @@ We recommend backing up data to Googles Object storage, or maybe even use Amazon
 
 NOTE: Enonic XP also provides Dump functionality (creates a dump of all your data) and Export (export of selected data) services for moving data out of the system.
 However, these tools will require additional disk-space available on your instance.
-You can try out dump and export using [Data Toolbox]https://market.enonic.com/vendors/glenn-ricaud/data-toolbox
+You can try out dump and export using https://market.enonic.com/vendors/glenn-ricaud/data-toolbox[Data Toolbox]
 
 == Upgrading
 
