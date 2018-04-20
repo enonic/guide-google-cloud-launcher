@@ -112,11 +112,11 @@ If you have not worked with Docker before, we recommend you to have a look at ht
 
 Here is a list of common operations you may want to try out:
 
-* List running containers
+*List running containers*
 
   sudo docker ps
 
-* Show last 100 log lines from a container
+*Show last 100 log lines from a container*
 
   sudo docker logs --tail 100 <containerID>
 
@@ -135,15 +135,15 @@ The Docker compose configuration files contain all details about the containers,
 
 Here are some useful commands:
 
-* Stop Enonic XP
+*Stop Enonic XP*
 
   docker-compose stop exp
 
-* Start Enonic XP
+*Start Enonic XP*
 
   docker-compose start exp
 
-* List last 100 logs from all containers
+*List last 100 logs from all containers*
 
   docker-compose logs --tail="100"
 
