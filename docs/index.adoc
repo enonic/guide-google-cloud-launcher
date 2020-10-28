@@ -2,7 +2,7 @@
 :toc: right
 :experimental:
 
-*Everything you need to know for production grade deployment of Enonic XP using the Google Cloud Launcher image*
+*Everything you need to know for production grade deployment of Enonic XP using the Launcher image on Google Cloud*
 
 == Deploy Launcher image
 
@@ -10,19 +10,20 @@
 [frame="none"]
 [grid="none"]
 |============================
-|1| Visit https://cloud.google.com/[Google Cloud] and select btn:[Launcher] from the top menu.
-|2| Click  btn:[Explore Launcher] and then search for Enonic XP.
-|3| You should now see the image below, click btn:[Launch on Compute Engine]
+|1| Visit https://console.cloud.google.com/marketplace[Google Cloud Marketplace] and search for Enonic XP
+|2| There should be one match to the search.  Click on it.
+|3| Below the top bar, you should see this, click btn:[Launch] :
 
 image::images/launcher-image.png["Enonic XP Launcher Image", width="828px"]
-|4| You should now see the image below:
+|4| If you have not selected a project to run the image in, you will now have to choose one of your existing project or create a new one.
+|5| After you have set up the project, you should see something like this:
 
 image::images/launcher-deploy.png["Deploy Enonic XP", width="490px"]
 
 You may optionally change the settings above to match your requirements.
 
-When ready, press btn:[Deploy].
-|5| You will now see a new screen as the server is starting.
+When ready, check the box to accept the "GCP Marketplace Terms of Service" and press btn:[Deploy].
+|6| You will now see a new screen as the server is starting.
 
 image::images/launcher-booting.png["Deploy Enonic XP", width="499px"]
 

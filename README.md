@@ -1,2 +1,2 @@
-# guide-my-first-app
-A step by step guide for building your for Enonic App
+# guide-google-cloud-launcher
+A step by step guide for building your running Enonic XP in the Google Cloud.
