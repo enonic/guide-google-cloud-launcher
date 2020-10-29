@@ -4,7 +4,7 @@
 
 *Everything you need to know for production grade deployment of Enonic XP using the Launcher image on Google Cloud*
 
-== Deploy Launcher image
+== Deploy XP image
 
 [cols="1%s,99%a"]
 [frame="none"]
