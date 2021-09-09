@@ -1,16 +1,12 @@
-buildscript {
-    repositories {
-        jcenter()
-    }
-
-    dependencies {
-        classpath 'org.asciidoctor:asciidoctor-gradle-plugin:1.6.1'
-    }
+plugins {
+    id 'org.asciidoctor.jvm.convert' version '3.2.0'
 }
-
-apply plugin: 'org.asciidoctor.convert'
 
 asciidoctor {
   sourceDir = file('docs')
   outputDir = file('build/docs')
+}
+
+repositories {
+    mavenCentral()
 }
